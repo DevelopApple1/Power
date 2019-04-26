@@ -1,0 +1,12 @@
+Package: com.conorthedev.modernpower
+Name: ModernPower
+Version: 1.2
+Depends: mobilesubstrate, ws.hbang.common (>= 1.11), me.nepeta.libcolorpicker 
+Architecture: iphoneos-arm
+Description: A more good-looking and less intrusive Power UI.
+Maintainer: ConorTheDev
+Author: ConorTheDev
+Section: Tweaks
+Icon: https://repo.conorthedev.com/img/modernpower.png
+Depiction: https://repo.conorthedev.com/package/com.conorthedev.modernpower
+SileoDepiction: https://repo.conorthedev.com/SileoDepictions/ModernPower
