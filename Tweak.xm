@@ -34,7 +34,7 @@ BOOL overrideTint = false;
 	*/
 	CGRect rect = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
 
-	rect.origin.x = rect.origin.x - 300;
+	rect.origin.x = rect.origin.x - 600;
 
 	[UIView animateWithDuration:0.5
 	 delay:0.1
@@ -49,7 +49,7 @@ BOOL overrideTint = false;
 	Advanced view
 */
 %new -(void)renderAdvanced {
-	UIView *myView = [[UIView alloc]initWithFrame:CGRectMake(0, 50, self.view.frame.size.width, self.view.frame.size.height)];
+	UIView *myView = [[UIView alloc]initWithFrame:CGRectMake(0, 150, self.view.frame.size.width, self.view.frame.size.height)];
 	// Add tap recognizer outside the mask layer we create later
 	UITapGestureRecognizer *singleFingerTap = 
   [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(close)];
