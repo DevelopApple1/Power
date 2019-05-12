@@ -34,10 +34,10 @@ BOOL overrideTint = false;
 	*/
 	CGRect rect = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
 
-	rect.origin.x = rect.origin.x - 600;
+	rect.origin.x = rect.origin.x - 300;
 
-	[UIView animateWithDuration:0.5
-	 delay:0.1
+	[UIView animateWithDuration:0.3
+	 delay:0.0
 	 options:UIViewAnimationCurveEaseIn
 	 animations:^{
 	  self.view.frame = rect;
@@ -49,7 +49,7 @@ BOOL overrideTint = false;
 	Advanced view
 */
 %new -(void)renderAdvanced {
-	UIView *myView = [[UIView alloc]initWithFrame:CGRectMake(0, 150, self.view.frame.size.width, self.view.frame.size.height)];
+	UIView *myView = [[UIView alloc]initWithFrame:CGRectMake(0, 50, self.view.frame.size.width, self.view.frame.size.height)];
 	// Add tap recognizer outside the mask layer we create later
 	UITapGestureRecognizer *singleFingerTap = 
   [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(close)];
@@ -58,7 +58,7 @@ BOOL overrideTint = false;
 	// Create a mask layer and the frame to determine what will be visible in the view.
 	CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
 	
-	CGRect maskRect = CGRectMake(self.view.frame.size.width - 110, self.view.frame.size.height / 2 - 200, 100, 300);
+	CGRect maskRect = CGRectMake(self.view.frame.size.width - 110, self.view.frame.size.height / 2 - 200, 200, 600);
 	
 	// Create a path with the rectangle in it.
 	CGPathRef path = CGPathCreateWithRoundedRect(maskRect, 15, 15, NULL);
@@ -97,7 +97,6 @@ BOOL overrideTint = false;
 	NSBundle* bundle = [NSBundle bundleWithPath:@"/Library/PreferenceBundles/ModernPowerPrefs.bundle"];
 	NSString* respring = [bundle pathForResource:@"respring" ofType:@"png"];
 	NSString* back = [bundle pathForResource:@"back" ofType:@"png"];
-	NSString* safemode = [bundle pathForResource:@"safemode" ofType:@"png"];
 
 	/*
 	        Respring Button
@@ -105,7 +104,6 @@ BOOL overrideTint = false;
 	UIButton *respringButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
 	respringButton.frame = CGRectMake(self.view.frame.size.width - 110, self.view.frame.size.height / 2 - 180, 100, 50);
 	[respringButton setImage:[UIImage imageWithContentsOfFile: respring] forState:UIControlStateNormal];
-	[respringButton setTitle:@"Respring" forState:UIControlStateNormal];
 	[respringButton addTarget:self action:@selector(respring) forControlEvents:UIControlEventTouchUpInside];
 	if(style == 1 && !overrideTint) {			
 		// Set the tint colour depending on what the user has chose for the blur style
@@ -132,37 +130,7 @@ BOOL overrideTint = false;
 	[respringButton centerVertically];
 	[myView addSubview:respringButton];
 
-	/*
-	    Safe Mode Button
-	 */
-	UIButton *safeModeButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
-	safeModeButton.frame = CGRectMake(self.view.frame.size.width - 110, self.view.frame.size.height / 2 - 110, 100, 50);
-	[safeModeButton setImage:[UIImage imageWithContentsOfFile: safemode] forState:UIControlStateNormal];
-	[safeModeButton setTitle:@"Sandbox" forState:UIControlStateNormal];
-	[safeModeButton addTarget:self action:@selector(safemode) forControlEvents:UIControlEventTouchUpInside];
-	if(style == 1 && !overrideTint) {			
-		if(blurStyle == 0) {
-  		safeModeButton.tintColor = [UIColor blackColor];
-		} else if (blurStyle == 1) {
-			safeModeButton.tintColor = [UIColor blackColor];
-		} else if (blurStyle == 2) {
-			safeModeButton.tintColor = [UIColor whiteColor];
-		}
-	} else if(style != 0) {
-		safeModeButton.tintColor = tintColor;
-	} else {
-		if(defaultTheme == 0) {
-  		safeModeButton.tintColor = LCPParseColorString(@"#6a009c", @"#6a009c");
-		} else if (defaultTheme == 1) {
-			safeModeButton.tintColor = LCPParseColorString(@"#1a73e8", @"#1a73e8");
-		} else if (defaultTheme == 2) {
-			safeModeButton.tintColor = LCPParseColorString(@"#1ed760", @"#1ed760");
-		} else if (defaultTheme == 3) {
-			safeModeButton.tintColor = LCPParseColorString(@"#007AFF", @"#007AFF");
-		}
-	}
-	[safeModeButton centerVertically];
-	[myView addSubview:safeModeButton];
+
 
 	/*
 	   Back Button
@@ -215,7 +183,7 @@ BOOL overrideTint = false;
 	Main View
 */
 %new -(void)renderMain {
-	UIView *myView = [[UIView alloc]initWithFrame:CGRectMake(0, 50, self.view.frame.size.width, self.view.frame.size.height)];
+	UIView *myView = [[UIView alloc]initWithFrame:CGRectMake(0, 550, self.view.frame.size.width, self.view.frame.size.height)];
 	// Add tap recognizer outside the mask layer we create later
 	UITapGestureRecognizer *singleFingerTap = 
   [[UITapGestureRecognizer alloc] initWithTarget:self 
@@ -224,7 +192,7 @@ BOOL overrideTint = false;
 
 	// Create a mask layer and the frame to determine what will be visible in the view.
 	CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-	CGRect maskRect = CGRectMake(self.view.frame.size.width - 110, self.view.frame.size.height / 2 - 200, 100, 300);
+	CGRect maskRect = CGRectMake(self.view.frame.size.width - 405, self.view.frame.size.height / 2 - 360, 600, 80);
 	// Create a path with the rectangle in it.
 	CGPathRef path = CGPathCreateWithRoundedRect(maskRect, 15, 15, NULL);
 
@@ -261,14 +229,18 @@ BOOL overrideTint = false;
 	NSBundle* bundle = [NSBundle bundleWithPath:@"/Library/PreferenceBundles/ModernPowerPrefs.bundle"];
 	NSString* power = [bundle pathForResource:@"power" ofType:@"png"];
 	NSString* reboot = [bundle pathForResource:@"reboot" ofType:@"png"];
-	NSString* advanced = [bundle pathForResource:@"advanced" ofType:@"png"];
-	NSString* close = [bundle pathForResource:@"close" ofType:@"png"];
+NSString* respring = [bundle pathForResource:@"respring" ofType:@"png"];
+NSString* safemode = [bundle pathForResource:@"safemode" ofType:@"png"];
+NSString* close = [bundle pathForResource:@"close" ofType:@"png"];
+
+
+
 
 	/*
 	        Reboot Button
 	 */
 	UIButton *rebootButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
-	rebootButton.frame = CGRectMake(self.view.frame.size.width - 110, self.view.frame.size.height / 2 - 180, 100, 50);
+	rebootButton.frame = CGRectMake(self.view.frame.size.width - 180, self.view.frame.size.height / 2 - 350, 60, 60);
 	[rebootButton setImage:[UIImage imageWithContentsOfFile: reboot] forState:UIControlStateNormal];
 	[rebootButton setTitle:@"Reboot" forState:UIControlStateNormal];
 	[rebootButton addTarget:self action:@selector(reboot) forControlEvents:UIControlEventTouchUpInside];
@@ -284,6 +256,7 @@ BOOL overrideTint = false;
 		rebootButton.tintColor = tintColor;
 	} else {
 		if(defaultTheme == 0) {
+
   		rebootButton.tintColor = LCPParseColorString(@"#6a009c", @"#6a009c");
 		} else if (defaultTheme == 1) {
 			rebootButton.tintColor = LCPParseColorString(@"#1a73e8", @"#1a73e8");
@@ -303,9 +276,9 @@ BOOL overrideTint = false;
 	   Power Off Button
 	 */
 	UIButton *powerButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
-	powerButton.frame = CGRectMake(self.view.frame.size.width - 110, self.view.frame.size.height / 2 - 110, 100, 50);
+	powerButton.frame = CGRectMake(self.view.frame.size.width - 100, self.view.frame.size.height / 2 - 350, 60, 60);
 	[powerButton setImage:[UIImage imageWithContentsOfFile: power] forState:UIControlStateNormal];
-	[powerButton setTitle:@"Power" forState:UIControlStateNormal];
+    [powerButton setTitle:@"PowerOFF" forState:UIControlStateNormal];
 	[powerButton addTarget:self action:@selector(powerDown) forControlEvents:UIControlEventTouchUpInside];
 	if(style == 1 && !overrideTint) {			
 		if(blurStyle == 0) {
@@ -319,7 +292,7 @@ BOOL overrideTint = false;
 		powerButton.tintColor = tintColor;
 	} else {
 		if(defaultTheme == 0) {
-  		powerButton.tintColor = LCPParseColorString(@"#6a009c", @"#6a009c");
+  		powerButton.tintColor = LCPParseColorString(@"#1a73e8", @"#007AFF");
 		} else if (defaultTheme == 1) {
 			powerButton.tintColor = LCPParseColorString(@"#1a73e8", @"#1a73e8");
 		} else if (defaultTheme == 2) {
@@ -331,69 +304,106 @@ BOOL overrideTint = false;
 	[powerButton centerVertically];
 	[myView addSubview:powerButton];
 
-	/*
-	   Advanced Button
-	 */
-	UIButton *advancedButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
-	advancedButton.frame = CGRectMake(self.view.frame.size.width - 110, self.view.frame.size.height / 2 - 40, 100, 50);
-	[advancedButton setImage:[UIImage imageWithContentsOfFile: advanced] forState:UIControlStateNormal];
-	[advancedButton setTitle:@"More" forState:UIControlStateNormal];
-	[advancedButton addTarget:self action:@selector(renderAdvanced) forControlEvents:UIControlEventTouchUpInside];
-	if(style == 1 && !overrideTint) {			
-		if(blurStyle == 0) {
-  		advancedButton.tintColor = [UIColor blackColor];
-		} else if (blurStyle == 1) {
-			advancedButton.tintColor = [UIColor blackColor];
-		} else if (blurStyle == 2) {
-			advancedButton.tintColor = [UIColor whiteColor];
-		}
-	} else if(style != 0) {
-		advancedButton.tintColor = tintColor;
-	} else {
-		if(defaultTheme == 0) {
-  		advancedButton.tintColor = LCPParseColorString(@"#6a009c", @"#6a009c");
-		} else if (defaultTheme == 1) {
-			advancedButton.tintColor = LCPParseColorString(@"#1a73e8", @"#1a73e8");
-		} else if (defaultTheme == 2) {
-			advancedButton.tintColor = LCPParseColorString(@"#1ed760", @"#1ed760");
-		} else if (defaultTheme == 3) {
-			rebootButton.tintColor = LCPParseColorString(@"#007AFF", @"#007AFF");
-		}
-	}
-	[advancedButton centerVertically];
-	[myView addSubview:advancedButton];
 
-	/*
-	   Close Button
-	 */
-	UIButton *closeButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
-	closeButton.frame = CGRectMake(self.view.frame.size.width - 110, self.view.frame.size.height / 2 + 30, 100, 50);
-	[closeButton setImage:[UIImage imageWithContentsOfFile: close] forState:UIControlStateNormal];
-	[closeButton setTitle:@"Close" forState:UIControlStateNormal];
-	[closeButton addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
-	if(style == 1 && !overrideTint) {			
-		if(blurStyle == 0) {
-  		closeButton.tintColor = [UIColor blackColor];
-		} else if (blurStyle == 1) {
-			closeButton.tintColor = [UIColor blackColor];
-		} else if (blurStyle == 2) {
-			closeButton.tintColor = [UIColor whiteColor];
-		}
-	} else if(style != 0) {
-		closeButton.tintColor = tintColor;
-	} else {
-		if(defaultTheme == 0) {
-  		closeButton.tintColor = LCPParseColorString(@"#6a009c", @"#6a009c");
-		} else if (defaultTheme == 1) {
-			closeButton.tintColor = LCPParseColorString(@"#1a73e8", @"#1a73e8");
-		} else if (defaultTheme == 2) {
-			closeButton.tintColor = LCPParseColorString(@"#1ed760", @"#1ed760");
-		} else if (defaultTheme == 3) {
-			rebootButton.tintColor = LCPParseColorString(@"#007AFF", @"#007AFF");
-		}
-	}
-	[closeButton centerVertically];
-	[myView addSubview:closeButton];
+
+/*
+Respring Button
+*/
+UIButton *respringButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
+respringButton.frame = CGRectMake(self.view.frame.size.width - 260, self.view.frame.size.height / 2 - 350, 60, 60);
+[respringButton setImage:[UIImage imageWithContentsOfFile: respring] forState:UIControlStateNormal];
+ [respringButton setTitle:@"Respring" forState:UIControlStateNormal];
+[respringButton addTarget:self action:@selector(respring) forControlEvents:UIControlEventTouchUpInside];
+if(style == 1 && !overrideTint) {
+// Set the tint colour depending on what the user has chose for the blur style
+if(blurStyle == 0) {
+respringButton.tintColor = [UIColor blackColor];
+} else if (blurStyle == 1) {
+respringButton.tintColor = [UIColor blackColor];
+} else if (blurStyle == 2) {
+respringButton.tintColor = [UIColor whiteColor];
+}
+} else if(style != 0) {
+respringButton.tintColor = tintColor;
+} else {
+if(defaultTheme == 0) {
+respringButton.tintColor = LCPParseColorString(@"#6a009c", @"#6a009c");
+} else if (defaultTheme == 1) {
+respringButton.tintColor = LCPParseColorString(@"#1a73e8", @"#1a73e8");
+} else if (defaultTheme == 2) {
+respringButton.tintColor = LCPParseColorString(@"#1ed760", @"#1ed760");
+} else if (defaultTheme == 3) {
+respringButton.tintColor = LCPParseColorString(@"#007AFF", @"#007AFF");
+}
+}
+[respringButton centerVertically];
+[myView addSubview:respringButton];
+
+/*
+Safe Mode Button
+*/
+UIButton *safeModeButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
+safeModeButton.frame = CGRectMake(self.view.frame.size.width - 345, self.view.frame.size.height / 2 - 350, 60, 60);
+[safeModeButton setImage:[UIImage imageWithContentsOfFile: safemode] forState:UIControlStateNormal];
+[safeModeButton setTitle:@"SafeMode" forState:UIControlStateNormal];
+[safeModeButton addTarget:self action:@selector(safemode) forControlEvents:UIControlEventTouchUpInside];
+if(style == 1 && !overrideTint) {
+if(blurStyle == 0) {
+safeModeButton.tintColor = [UIColor blackColor];
+} else if (blurStyle == 1) {
+safeModeButton.tintColor = [UIColor blackColor];
+} else if (blurStyle == 2) {
+safeModeButton.tintColor = [UIColor whiteColor];
+}
+} else if(style != 0) {
+safeModeButton.tintColor = tintColor;
+} else {
+if(defaultTheme == 0) {
+safeModeButton.tintColor = LCPParseColorString(@"#6a009c", @"#6a009c");
+} else if (defaultTheme == 1) {
+safeModeButton.tintColor = LCPParseColorString(@"#1a73e8", @"#1a73e8");
+} else if (defaultTheme == 2) {
+safeModeButton.tintColor = LCPParseColorString(@"#1ed760", @"#1ed760");
+} else if (defaultTheme == 3) {
+safeModeButton.tintColor = LCPParseColorString(@"#007AFF", @"#007AFF");
+}
+}
+[safeModeButton centerVertically];
+[myView addSubview:safeModeButton];
+
+
+/*
+Close Button
+*/
+UIButton *closeButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
+closeButton.frame = CGRectMake(self.view.frame.size.width - 420, self.view.frame.size.height / 2 - 350, 60, 60);
+[closeButton setImage:[UIImage imageWithContentsOfFile: close] forState:UIControlStateNormal];
+[closeButton setTitle:@"Close" forState:UIControlStateNormal];
+[closeButton addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
+if(style == 1 && !overrideTint) {
+if(blurStyle == 0) {
+closeButton.tintColor = [UIColor blackColor];
+} else if (blurStyle == 1) {
+closeButton.tintColor = [UIColor blackColor];
+} else if (blurStyle == 2) {
+closeButton.tintColor = [UIColor whiteColor];
+}
+} else if(style != 0) {
+closeButton.tintColor = tintColor;
+} else {
+if(defaultTheme == 0) {
+closeButton.tintColor = LCPParseColorString(@"#6a009c", @"#6a009c");
+} else if (defaultTheme == 1) {
+closeButton.tintColor = LCPParseColorString(@"#1a73e8", @"#1a73e8");
+} else if (defaultTheme == 2) {
+closeButton.tintColor = LCPParseColorString(@"#1ed760", @"#1ed760");
+} else if (defaultTheme == 3) {
+rebootButton.tintColor = LCPParseColorString(@"#007AFF", @"#007AFF");
+}
+}
+[closeButton centerVertically];
+[myView addSubview:closeButton];
+
 
 	self.view = myView;
 
@@ -416,7 +426,7 @@ BOOL overrideTint = false;
 */
 %new -(void)close {
 	[UIView animateWithDuration:0.5
-	 delay:0.1
+	 delay:0.0
 	 options:UIViewAnimationCurveEaseIn
 	 animations:^{
 	  [self.view setFrame:CGRectOffset([self.view frame], +self.view.frame.size.width, 0)];
